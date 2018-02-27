@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
+using Business.Builders;
+using Client.BaseClient;
+using Domain.Repositories;
 
 namespace BoilerPlate_1
 {
@@ -27,8 +27,21 @@ namespace BoilerPlate_1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IBaseBuilder, BaseBuilder>();
+            services.AddScoped<IBaseServiceClient, BaseClientService>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
+
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(
+                config =>
+                        config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver()
+
+                )
+                .AddJsonOptions(
+                    config =>
+                        config.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter())
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +49,10 @@ namespace BoilerPlate_1
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            app.UseDeveloperExceptionPage();
+            loggerFactory.AddDebug(LogLevel.Information);
+
+            app.UseStaticFiles();
 
             app.UseMvc();
         }
