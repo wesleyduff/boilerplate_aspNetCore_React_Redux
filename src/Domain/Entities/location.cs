@@ -7,6 +7,7 @@ namespace Domain.Entities
 {
     public class Location
     {
+        public int Id { get; set; }
         public int latitude { get; set; }
         public int longitude { get; set; }
     }

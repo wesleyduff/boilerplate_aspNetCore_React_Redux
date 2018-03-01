@@ -3,6 +3,7 @@
 
   "dependencies": {
     "Domain": "1.0.0-*",
+    "MongoDB.Driver": "2.5.0",
     "NETStandard.Library": "1.6.0"
   },
 

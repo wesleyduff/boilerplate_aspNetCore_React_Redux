@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Entities;
+using Domain.AbstractClasses;
 
 namespace Domain.Repositories
 {
-    public class LocationRepository : ILocationRepository
+    public class LocationRepository : Crud<Location>, ILocationRepository
     {
+
         /// <summary>
-        /// Add location to Storage
+        /// Add a Location to the store
         /// </summary>
-        /// <param name="location"></param>
-        /// <returns>Location that was added</returns>
-        public Location AddLocation(Location location)
+        /// <param name="item">Location</param>
+        /// <returns>Location</returns>
+        public override Location Add(Location item)
         {
             throw new NotImplementedException();
         }
@@ -19,9 +21,29 @@ namespace Domain.Repositories
         /// <summary>
         /// Delete the location from the storage
         /// </summary>
-        /// <param name="location"></param>
+        /// <param name="item">Location</param>
         /// <returns>Location that was deleted</returns>
-        public Location DeleteLocation(Location location)
+        public override Location Delete(Location item)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get a Location
+        /// </summary>
+        /// <param name="item">Location</param>
+        /// <returns>Location</returns>
+        public override Location Get(Location item)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Update Location
+        /// </summary>
+        /// <param name="item">Location</param>
+        /// <returns>Location</returns>
+        public override Location Update(Location item)
         {
             throw new NotImplementedException();
         }

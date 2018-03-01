@@ -11,7 +11,7 @@ namespace Business.Builders
     /// Cache did not contain any of these requests. 
     /// Make a call to the store for these requests.
     /// </summary>
-    public class BaseBuilder : IBaseBuilder
+    public class BaseBuilder : Crud<Location>, IBaseBuilder
     {
         private IBaseServiceClient _baseClientService;
 
@@ -21,14 +21,13 @@ namespace Business.Builders
         }
 
         /// <summary>
-        /// Add the location to the store.
-        /// The location was not found in the store. 
+        /// Add location to Store
         /// </summary>
-        /// <param name="location"></param>
-        /// <returns>The Location that was added to the store</returns>
-        public Location AddLocation(Location location)
+        /// <param name="item">Location</param>
+        /// <returns>Location</returns>
+        public override Location Add(Location item)
         {
-            return _baseClientService.AddLocation(location);
+            return _baseClientServie.Add(Location);
         }
 
         /// <summary>
@@ -41,14 +40,33 @@ namespace Business.Builders
         }
 
         /// <summary>
-        /// Delete the location from the store.
-        /// The store was found and should be deleted when called.
+        /// Delete location from the store
         /// </summary>
-        /// <param name="location"></param>
-        /// <returns>The store that was deleted</returns>
-        public Location DeleteLocation(Location location)
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public override Location Delete(Location item)
         {
-            return _baseClientService.DeleteLocation(location);
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get location from the store
+        /// </summary>
+        /// <param name="item">Location</param>
+        /// <returns>Location</returns>
+        public override Location Get(Location item)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Update location from the store
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public override Location Update(Location item)
+        {
+            throw new NotImplementedException();
         }
     }
 }
